@@ -1,12 +1,15 @@
 package com.zhd.validator.mytestValidator.validator;
 
-import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.zhd.validator.mytestValidator.dto.ClientInfoDTO;
 import com.zhd.validator.mytestValidator.dto.PurchaseDTO;
+import com.zhd.validator.mytestValidator.service.ClientService;
 
-@Component
-public class PurchaseVaildatorBase {
+public abstract class PurchaseVaildatorBase {
+
+	@Autowired
+	protected ClientService clientService;
 
 	private ClientInfoDTO clientInfoDTO;
 
@@ -16,16 +19,7 @@ public class PurchaseVaildatorBase {
 		}
 		// TODO 根据clientid获取ClientInfoDTO
 		String clientid = purchaseDTO.getClientid();
-		clientInfoDTO = queryClientById(clientid);
-		return clientInfoDTO;
-	}
-
-	private ClientInfoDTO queryClientById(String clientid) {
-		// TODO
-		ClientInfoDTO clientInfoDTO = new ClientInfoDTO();
-		clientInfoDTO.setClientId(clientid);
-		clientInfoDTO.setClientName("张三");
-		System.out.println("ClientInfoDTO被实例化");
+		clientInfoDTO = clientService.queryClientById(clientid);
 		return clientInfoDTO;
 	}
 

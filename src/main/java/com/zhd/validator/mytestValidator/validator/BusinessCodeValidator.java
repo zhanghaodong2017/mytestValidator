@@ -24,5 +24,4 @@ public class BusinessCodeValidator extends PurchaseVaildatorBase implements Buy0
 		// TODO Auto-generated method stub
 		System.out.println("BusinessCodeValidator");
 	}
-
 }
